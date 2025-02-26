@@ -20,6 +20,106 @@ window.onload = function(){
 	noteBox = document.getElementById("note");
     noteOverlay = document.getElementById("noteOverlay");
     closeNote = document.getElementById("closeNote");
+	car1 = document.getElementById("car");
+	cameraRig = document.getElementById("cameraRig");
+	car2 = document.getElementById("car2");
+	carCamera1 = document.getElementById("carCamera");
+	carCamera2 = document.getElementById("carCamera2");
+	timeText = document.getElementById("timeText");
+	blackScreen = document.getElementById("blackScreen");
+	dayLight = document.getElementById("dayLight");
+	floor = document.getElementById("floor");
+    sky = document.getElementById("sky");
+	
+   car1.addEventListener("click", function () {
+    console.log("Car 1 clicked");
+
+    cameraRig.setAttribute("position", carCamera1.getAttribute("position"));
+    camera.setAttribute("camera", "active: false");
+    carCamera1.setAttribute("camera", "active: true");
+
+    car1.setAttribute("animation__drive", {
+      property: "position",
+      dur: 4800,
+      easing: "linear",
+      from: "1.7 0 500",
+      to: "1.7 0 400",
+      loop: 0,
+    });
+
+    car2.setAttribute("animation__move", {
+      property: "position",
+      dur: 5000,
+      easing: "linear",
+      from: "-50 0 400",
+      to: "1.7 0 400",
+      loop: 0,
+    });
+
+    console.log("Car animations started");
+
+    car2.addEventListener("animationcomplete", function () {
+      console.log("Car 2 animation complete");
+
+      car1.setAttribute("animation__drive", {
+        property: "position",
+        dur: 3000,
+        easing: "linear",
+        from: "1.7 0 400",
+        to: "60 0 400",
+        loop: 0,
+      });
+
+      blackScreen.setAttribute("visible", true);
+      timeText.setAttribute("visible", true);
+	
+      console.log("Black screen and time text should be visible");
+	  teleportHouse(); 
+	  
+	  dayLight.setAttribute("animation__light", {
+          property: "light.intensity",
+          from: 1,
+          to: 0.2,
+          dur: 24000,
+          easing: "linear",
+        });
+		
+		
+		scene.setAttribute("animation__fog", {
+          property: "fog.color",
+          from: "#ffffff",
+          to: "#000000",
+          dur: 24000, 
+          easing: "linear",
+        });
+		
+		scene.setAttribute("animation__fogDensity", {
+          property: "fog.density",
+          from: 0.001,
+          to: 0.08,
+          dur: 28000, 
+          easing: "linear",
+        });
+		
+
+        sky.setAttribute("animation__color", {
+          property: "color",
+          from: "#87CEEB",
+          to: "#000033", 
+          dur: 30000, 
+          easing: "linear",
+        });
+		
+      setTimeout(() => {
+        timeText.setAttribute("visible", false);
+        blackScreen.setAttribute("visible", false);
+		
+		
+        camera.setAttribute("camera", "active: true");
+        carCamera1.setAttribute("camera", "active: false");
+      }, 4000);
+    });
+  });
 	
 	noteBox.addEventListener("click", function () {
             noteOverlay.style.display = "block";
@@ -35,18 +135,20 @@ window.onload = function(){
             }
         })
 		
-	 //for (let i = 0; i < 1; i++) {
+    //for (let i = 0; i < 1; i++) {
     //monster = new Monster(-5, 0, 0, wendigo);
 	
 	//monster = new Monster(68, 0, -34, wendigo);
   //}
-
+	
+	//let monster3 = new Tester('monster3', -5, 0, 0);
 	let monster1 = new Tester('monster1', 20, 4, 0);
 	let monster2 = new Tester('monster2', 14, 16, 0);
   
-  // Create MonsterFollower instances to make them follow the camera
+   //Create MonsterFollower instances to make them follow the camera
   new MonsterFollower(camera, monster1.obj, 10, 0.35);
   new MonsterFollower(camera, monster2.obj, 10, 0.35); 
+  //new MonsterFollower(camera, monster3.obj, 25, 0.32); 
   
  
 	  
@@ -142,22 +244,16 @@ window.onload = function(){
 	
 	this.go = true;
   window.addEventListener("keydown", function(e){
-	  camera.y = 0;
-	  camera.dy = 0.5;
 		if (e.key == "c"){
-			camera.y += camera.dy
-			 camera.object3D.position.y = camera.y;
+			 camera.object3D.position.y = 0.5;
 			 camera.setAttribute("wasd-controls","acceleration:25");
 			this.go = false;
 			this.allow = false;
 			  console.log(e.key)
 		}
 	window.addEventListener("keyup", function(e){
-	 camera.y = 0;
-	  camera.dy = 0.5;
 	  if (e.key == "c"){
-		camera.y += (camera.dy * 3)
-		camera.object3D.position.y = camera.y;
+		camera.object3D.position.y = 1.6;
 		this.go = true;
 		this.allow = true;
 		camera.setAttribute("wasd-controls","acceleration:65");
@@ -179,14 +275,13 @@ window.onload = function(){
 	window.addEventListener("keypress",function(e){
 		if(e.key == "y"){
 			if (isFirstPress1){
-				camera.y += camera.dy
-				camera.object3D.position.y += 0.7;
+				camera.object3D.position.y = 0.35;
 				camera.setAttribute("wasd-controls","acceleration:25");
 				this.go = false;
 				this.allow = false;
 				console.log(e.key)
 			}else {
-				camera.object3D.position.y = (0.5 * 3);
+				camera.object3D.position.y = 1.6;
 				camera.setAttribute("wasd-controls","acceleration:65");
 				this.allow = true;
 				this.go = true;
@@ -283,8 +378,12 @@ window.onload = function(){
 	})
 	
 	door.onclick = function(){
-		door.setAttribute("rotation",{x:0,y:90,z:0});
-		door.setAttribute("color","green");
+		
+	if (door.getAttribute("rotation").y === 0) {
+      door.setAttribute("rotation", { x: 0, y: 90, z: 0 });
+    } else {
+      door.setAttribute("rotation", { x: 0, y: 0, z: 0 });
+		}
 	}
 	
 	
@@ -316,7 +415,7 @@ window.onload = function(){
 			this.allow = true;
 			this.continue = false;
 			if (e.key == "Shift"){
-				camera.setAttribute("wasd-controls","acceleration:85");
+				camera.setAttribute("wasd-controls","acceleration:350");
 				const runInterval = setInterval(() => {
 					if (this.allow){
 						countdown();
@@ -401,11 +500,12 @@ function loop(){
     //}
 //}
   
-  let testingMonsters = [monster1, monster2]; 
+	let testingMonsters = [monster1, monster2];//, monster3]; 
 	
 	for (Tester of testingMonsters){ 
 	let d = distance(monster1, camera);
 	let dx = distance(monster2, camera);
+	//let d3 = distance(monster3, camera);
 	
     if (d < 1.5) { 
       h -= 1;  
@@ -413,9 +513,12 @@ function loop(){
     } else if (dx < 1.5){
 		h -= 1;
 		if (h < 0) h = 0;
+	//}else if (d3 < 1.5){
+		//h -= 1;
+		//if (h < 0) h = 0;
 	}
   }
-  
+
 	window.requestAnimationFrame(loop);
 }
 
@@ -459,5 +562,9 @@ function teleportPlayer() {
 }
 
 function teleportBanana() {
-	camera.setAttribute("position", {x:33 , y:28, z:-10})
+	camera.setAttribute("position", {x:33 , y:28, z:-10});
+}
+
+function teleportHouse() {
+	camera.setAttribute("position", {x:20, y: 0, z: 40});
 }
