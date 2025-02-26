@@ -1,7 +1,7 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script> --!>
+	<script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script> 
 	<script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
 	<script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.4.0/dist/aframe-extras.min.js"></script>
     <script src="lamp.js"></script>
@@ -62,15 +62,24 @@
 	</style>
 	
 	<!--fog="near: 10; far: 35; color: black"--!>
-    <a-scene physics="debug: true" inspector-plugin-recast stats id="fog" fog="near: 10; far: 35; color: black" light="defaultLightsEnabled: false" background="color:black">
+    <a-scene physics="debug: false" inspector-plugin-recast stats id="fog" 
+	light="defaultLightsEnabled: false" fog="type: exponential; color: #ffffff; density: 0.001;" >
 	
+	 <a-sky id="sky" scale="2 2 2" color="#87CEEB"></a-sky>
+	 
 	 <!--<a-assets>
         <a-asset-item id="wendigoModel" src="wendigo/scene.gltf"></a-asset-item>
-        
       </a-assets>--!>
 	  
+	  <!-- <a-entity id="monster3" gltf-model="wendigo/scene.gltf" scale="1 1 1"></a-entity>--!>
+	  
+ <a-entity id="dayLight">
+    <a-light type="ambient" color="#ffffff" intensity="1"></a-light>
+  </a-entity>
+  
       <a-entity id="monster1" kinema-body scale="2 2 2" position="20 3.5 0" geometry="primitive: box" material="color: red"></a-entity>
     <a-entity id="monster2" kinema-body scale="2 2 2" position="14 15 0" geometry="primitive: box" material="color: green"></a-entity>
+	
 	
 	<a-box id="note"
 			   rotation="90 0 0"
@@ -103,8 +112,6 @@
 				id="interaction" opacity="0" shadow="receive: true" > </a-text>
 	</a-entity>
 	
-	  <!-- Challenge: Add low intensity ambient light to the world -->
-		<a-entity id="Light" light = "type: ambient; intensity: 0.2"> </a-entity>
 		<a-entity id="flashlight" radius="0.1" light="type: spot; intensity:0; color: #FFF; castShadow:true; penumbra:0.1; angle:25; decay:0.5; distance:20">
         </a-entity>
 		
@@ -114,10 +121,124 @@
                 text="color: white; align: center; value: Press E to collect the banana; width: 4; side:double" position="0 0.2 0.7" 
 				id="interaction" opacity="0" shadow="receive: true" > </a-text>
 	</a-entity>
-		
-	  <a-entity id="door" position="4 2.5 -10" wireframe="true">
-		<a-box static-body position="2 0 0" width="3" depth="0.2" scale="1.5 1.5 1.5" height="4" color="brown" shadow="receive: true"></a-box>
+
+	<a-entity position="-86 0 509.5">
+		<a-entity id="door" position="4 2.5 -10" wireframe="true">
+			<a-box static-body position="2 0 0" width="3" scale="2 2 2" depth="0.2" height="4" color="brown" shadow="receive: true"></a-box>
 		</a-entity>
+	</a-entity>
+	
+	<a-entity scale="2 2 2" position="-80 0 500" class="thingy">
+      <a-entity class="room">
+        <a-entity   class="wall" color="brown" position="0 0 -0.076" scale="1.5 1.5 1.5">
+          <a-box   width="2"  height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+          <a-box   width="2"  height="3" depth="0.1" position="2 1.5 0" ></a-box>
+          <a-box   width="2"  height="1" depth="0.1" position="0 2.5 0" ></a-box>
+		</a-entity>
+		<a-entity class="wall" color="brown" rotation="0 90 0" position="4.5 0 -4.5" scale="1.5 1.5 1.5">
+                <a-box   width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+                <a-box   width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" color="blue" opacity="0.2" position="0 1.5 0" ></a-box>
+            </a-entity>
+        <a-entity class="wall" color="brown" rotation="0 90 0" position="-4.5 0 -4.5" scale="1.5 1.5 1.5">
+                <a-box   width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+                <a-box   width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" color="blue" opacity="0.2" position="0 1.5 0" ></a-box>
+            </a-entity>
+        <a-entity class="wall" color="brown" position="0 0 -8.925" scale="1.5 1.5 1.5">
+              <a-box   width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+              <a-box   width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" color="blue" opacity="0.2" position="0 1.5 0" ></a-box>
+            </a-entity>
+		<a-entity class="roof" color="red" position="9 4 -4.5" rotation="90 0 90" scale="1.5 1.5 1.5">
+			<a-box   width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+              <a-box   width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+			  <a-box   width="2" height="1" depth="0.1" position="0 1.5 0" ></a-box>
+		</a-entity>	
+		<a-entity class="roof" color="red" position="0 4.4 -4.5" rotation="90 0 0" scale="1.5 1.5 1.5">
+			<a-box width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+              <a-box   width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+			  <a-box   width="2" height="1" depth="0.1" position="0 1.5 0"></a-box>
+		</a-entity>
+		<a-entity class="roof" color="red" position="0 4.4 -9" rotation="90 0 0" scale="1.5 1.5 1.5">
+			<a-box   width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+              <a-box    width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+			  <a-box   width="2" height="1" depth="0.1" position="0 1.5 0"></a-box>		
+		</a-entity>
+		<a-entity class="wall" color="brown" rotation="0 90 0" position="9 0 -4.5" scale="1.5 1.36 1.4">
+                <a-box   width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+                <a-box   width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+				<a-box   width="2" height="1" depth="0.1" position="0 1.5 0" ></a-box>
+	  </a-entity>
+	  <a-entity class="wall" color="brown" rotation="0 0 0" position="6 0 -9" scale="1 1.36 1">
+                <a-box   width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+                <a-box   width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+				<a-box   width="2" height="1" depth="0.1" position="0 1.5 0" ></a-box>
+	  </a-entity>
+	</a-entity>
+</a-entity>
+  
+	<!-- animation__drive = "dur: 5000; easing: linear; 
+	from: 1.7 0 500; to: 1.7 0 400; loop: -1; property: position; class: clickable" --!>
+	<a-entity id="car" scale="2.5 2.5 2.5" rotation="0 180 0" position="1.7 0 450" animation__drive = "dur: 5000; easing: linear; 
+	from: 1.7 0 500; to: 1.7 0 500; loop: 0; property: position">
+	 <a-box id="carBody" wireframe="false" color=" black" position="0 1 0" width="1.5" height="2" depth="3">
+		<a-box width="1.4" height="1.2" depth="2.5" color="black"></a-box>
+		<a-box width="1" height="2.5" depth="1.5" color="black"></a-box>
+		<!--headlights -->
+		<a-box position="-.4 -0.6 1.5" width="1.5" scale="0.3 0.3 0.3"></a-box>
+		<a-box position=".4 -0.6 1.5" width="1.5" scale="0.3 0.3 0.3"></a-box>
+		<!--wheels -->
+		<a-cylinder position="0.9 -0.6 -1" rotation="0 0 90" scale="0.4 0.4 0.4" ></a-cylinder>
+		<a-cylinder position="-0.9 -0.6 -1" rotation="0 0 90" scale="0.4 0.4 0.4"></a-cylinder>
+		<a-cylinder position="0.9 -0.6 1" rotation="0 0 90" scale="0.4 0.4 0.4"></a-cylinder>
+		<a-cylinder position="-0.9 -0.6 1" rotation="0 0 90" scale="0.4 0.4 0.4"></a-cylinder>
+	 </a-box>
+	 
+	 <a-camera id="carCamera" camera="active:false;" position="0 2 -5" rotation="0 180 0" look-controls="enabled: false" 
+	 wasd-controls="enabled: false">
+	       <a-text id="timeText" text="value: Few hours later; color: white; align: center;" position="0 3 -2" 
+	  visible="false"></a-text>
+		<a-plane id="blackScreen" position="0 0 -1" width="100" height="100" color="black" visible="false"></a-plane>
+	 </a-camera>
+	</a-entity>
+	
+	<a-entity id="car2" scale="2.5 2.5 2.5" rotation="0 90 0" position="-50 0 450" animation__move = "dur: 5000; easing: linear; 
+	from: -50 0 400; to: -50 0 400; loop: 0; property: position">
+	 <a-box id="carBody2" wireframe="false" color=" blue" position="0 1 0" width="1.5" height="2" depth="3">
+		<a-box width="1.4" height="1.2" depth="2.5" color="black"></a-box>
+		<a-box width="1" height="2.5" depth="1.5" color="black"></a-box>
+		<!--headlights -->
+		<a-box position="-.4 -0.6 1.5" width="1.5" scale="0.3 0.3 0.3"></a-box>
+		<a-box position=".4 -0.6 1.5" width="1.5" scale="0.3 0.3 0.3"></a-box>
+		<!--wheels -->
+		<a-cylinder position="0.9 -0.6 -1" rotation="0 0 90" scale="0.4 0.4 0.4" ></a-cylinder>
+		<a-cylinder position="-0.9 -0.6 -1" rotation="0 0 90" scale="0.4 0.4 0.4"></a-cylinder>
+		<a-cylinder position="0.9 -0.6 1" rotation="0 0 90" scale="0.4 0.4 0.4"></a-cylinder>
+		<a-cylinder position="-0.9 -0.6 1" rotation="0 0 90" scale="0.4 0.4 0.4"></a-cylinder>
+	 </a-box>
+	 <a-entity id="carCamera2" camera position="0 2 -5" rotation="0 180 0" look-controls="enabled: false" 
+	 wasd-controls="enabled: false" visible="false" ></a-entity>
+	</a-entity>
+	
+	 
+  
 	
 <a-entity position="0 0 0">
 	<a-entity id="thingy" position="0 2 0">
@@ -436,7 +557,7 @@
 		<a-box static-body position="42.5 0 -9.3" rotation="0 -45 0" height="15" width="3" depth="0.2" color="#5F3E2A"></a-box>
 		</a-entity>
 		
-		<a-entity id="advawv" position="14 0 -15"
+		<a-entity id="advawv" position="14 0 -15">
 		<a-box static-body position="46 0 -10" rotation="0 90 0" height="15" width="3" depth="0.5" color="#5F3E2A"></a-box>
 		<a-box static-body position="44.75 0 -8.5" rotation="0 0 0" height="15" width="3" depth="0.5" color="#5F3E2A"></a-box>
 		<a-box static-body position="44.75 0 -11.5" rotation="0 0 0" height="15" width="3" depth="0.5" color="#5F3E2A"></a-box>
@@ -466,9 +587,7 @@
 		<a-box static-body position="42.5 0 -9.3" rotation="0 -45 0" height="15" width="3" depth="0.2" color="#5F3E2A"></a-box>
 		</a-entity>
 		
-		
-
-			<a-entity id="room" position="0 9 0">
+	<a-entity id="room" position="0 9 0">
 		<a-box static-body position="42.5 0 -22.5" height="19" width="35" depth="0.5" color="#5F3E2A"></a-box>
 		<a-box static-body position="21.5 8.5 -22.5" height="2" width="8" depth="0.5" color="#5F3E2A"></a-box>
 		<a-box static-body position="45 0 0" height="19" width="30" depth="0.5" color="#5F3E2A"></a-box>
@@ -477,16 +596,31 @@
 		<a-box static-body position="40 0 -4" rotation="0 90 0" height="19" width="8" depth="0.5" color="#5F3E2A"></a-box>
 		<a-box static-body position="40 0 -18.5" rotation="0 90 0" height="19" width="8" depth="0.5" color="#5F3E2A"></a-box>
 		<a-box static-body position="40 8.5 -11" rotation="0 90 0" height="2" width="8" depth="0.5" color="#5F3E2A"></a-box>
-		</a-entity
+	</a-entity>
+</a-entity> 
+
+	
+	<a-entity static-body position="0 0 100" class="road"> 
+	  <a-plane scale="8.2 2.3 2.3" position="1 0 350" rotation="-90 89 0" width="40" height="2" color="white"></a-plane>
+	  <a-plane scale="8.2 2.3 2.3" position="210.3 0 350" rotation="-90 89 0" width="40" height="180" color="#7BC8A4"></a-plane>
+	  <a-plane scale="8.2 2.3 2.3" position="-208.3 0 350" rotation="-90 89 0" width="40" height="180" color="#7BC8A4"></a-plane>
 </a-entity>
 
-	 <a-plane static-body shadow="receive: true" position="0 0 -4" rotation="-90 0 0" width="750" height="750" color="#7BC8A4" shadow="receive: true"></a-plane>
+	 <a-plane static-body id="floor" shadow="receive: true" position="0 0 -4" 
+	 rotation="-90 0 0" width="600" height="600" color="#7BC8A4" shadow="receive: true"
+	 material="shader: flat;"></a-plane>
 	  
+
+
 	 <a-entity id="cameraRig" position="0 1.6 0" >
-      <a-camera id="camera" position="20 1.6 40" kinema-body="radius:0.8" look-controls="pointerLockEnabled:true" >
+      <a-camera id="camera" kinema-body="radius:0.8" position="-80 1.6 485" look-controls="pointerLockEnabled:true" >
         <a-cursor>
 			<a-text id="stamia" position="-0.5 1 -1" value="Stamia: " color="white"></a-text>
 			<a-text id="health" position="-0.5 0.5 -1" value="Health: " color="white"></a-text>
+			<div id="stamina-amount">
+		<div id="staminaplus"></div>
+		</div>
+	  
 		</a-cursor>
       </a-camera>
 	  </a-entity>
@@ -503,13 +637,3 @@
 		started becoming more and more dangerous.</p>
     </div>
     </a-scene>
-	
-	<div id="noteOverlay">
-        <span id="closeNote">&times;</span>
-        <p>The moose ate a berry and died and then became like this. so after eating the berry he decided
-		to protect the only other berry left for himself from others. After some time the moose 
-		started becoming more and more dangerous.</p>
-    </div>
-	
-  </body>
-</html>
