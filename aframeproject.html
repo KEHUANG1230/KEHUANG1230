@@ -65,7 +65,7 @@
     <a-scene physics="debug: false" inspector-plugin-recast stats id="fog" 
 	light="defaultLightsEnabled: false" fog="type: exponential; color: #ffffff; density: 0.001;" >
 	
-	 <a-sky id="sky" scale="2 2 2" color="#87CEEB"></a-sky>
+	 <!--<a-sky id="sky" scale="2 2 2" color="#87CEEB"></a-sky>--!>
 	 
 	 <!--<a-assets>
         <a-asset-item id="wendigoModel" src="wendigo/scene.gltf"></a-asset-item>
@@ -127,6 +127,78 @@
 			<a-box static-body position="2 0 0" width="3" scale="2 2 2" depth="0.2" height="4" color="brown" shadow="receive: true"></a-box>
 		</a-entity>
 	</a-entity>
+	
+	<a-entity position="-11.25 0 -130.3">
+		<a-entity id="door2" position="4 2.5 -10" wireframe="true">
+			<a-box static-body position="2 0 0" width="3" scale="2 2 2" depth="0.2" height="4" color="brown" shadow="receive: true"></a-box>
+		</a-entity>
+	</a-entity>
+	
+	<a-entity scale="2 2 2" color="brown" position="-5 0 -140" class="thingy">
+      <a-entity class="room">
+        <a-entity  color="brown" class="wall" color="brown" position="0 0 -0.076" scale="1.5 1.5 1.5">
+          <a-box   color="brown" width="2"  height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+          <a-box   color="brown" width="2"  height="3" depth="0.1" position="2 1.5 0" ></a-box>
+          <a-box   color="brown" width="2"  height="1" depth="0.1" position="0 2.5 0" ></a-box>
+		</a-entity>
+		<a-entity class="wall" color="brown" rotation="0 90 0" position="4.5 0 -4.5" scale="1.5 1.5 1.5">
+                <a-box   color="brown" width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+                <a-box   color="brown" width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+                <a-box   color="brown" width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+                <a-box   color="gray" width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+                <a-box  width="2" height="1" depth="0.1" color="blue" opacity="0.2" position="0 1.5 0" ></a-box>
+            </a-entity>
+        <a-entity class="wall" color="brown" rotation="0 90 0" position="-4.5 0 -4.5" scale="1.5 1.5 1.5">
+                <a-box  color="gray" width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+                <a-box  color="brown" width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+                <a-box  color="brown" width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+                <a-box  color="brown" width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+                <a-box  width="2" height="1" depth="0.1" color="blue" opacity="0.2" position="0 1.5 0" ></a-box>
+            </a-entity>
+        <a-entity class="wall" color="brown" position="0 0 -8.925" scale="1.5 1.5 1.5">
+              <a-box  color="gray" width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+              <a-box color="brown"  width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+              <a-box  color="gray" width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+              <a-box  color="brown" width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+              <a-box  color="brown" width="2" height="1" depth="0.1" color="blue" opacity="0.2" position="0 1.5 0" ></a-box>
+            </a-entity>
+		<a-entity color="brown" class="roof" color="red" position="9 4 -4.5" rotation="90 0 90" scale="1.5 1.5 1.5">
+			<a-box   width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+              <a-box  color="gray" width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+              <a-box   color="brown" width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+			  <a-box   width="2" height="1" depth="0.1" position="0 1.5 0" ></a-box>
+		</a-entity>	
+		<a-entity color="brown" class="roof" color="red" position="0 4.4 -4.5" rotation="90 0 0" scale="1.5 1.5 1.5">
+			<a-box width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+              <a-box   width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+              <a-box  color="gray"  width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+			  <a-box   color="brown" width="2" height="1" depth="0.1" position="0 1.5 0"></a-box>
+		</a-entity>
+		<a-entity color="brown" class="roof" color="red" position="0 4.4 -9" rotation="90 0 0" scale="1.5 1.5 1.5">
+			<a-box   width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+              <a-box    width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+              <a-box  color="gray" width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+              <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+			  <a-box   width="2" height="1" depth="0.1" position="0 1.5 0"></a-box>		
+		</a-entity>
+		<a-entity class="wall" color="brown" rotation="0 90 0" position="9 0 -4.5" scale="1.5 1.36 1.4">
+                <a-box   width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+                <a-box   width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+				<a-box   width="2" height="1" depth="0.1" position="0 1.5 0" ></a-box>
+	  </a-entity>
+	  <a-entity class="wall" color="brown" rotation="0 0 0" position="6 0 -9" scale="1 1.36 1">
+                <a-box   width="2" height="3" depth="0.1" position="-2 1.5 0" ></a-box>
+                <a-box   width="2" height="3" depth="0.1" position="2 1.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 0.5 0" ></a-box>
+                <a-box   width="2" height="1" depth="0.1" position="0 2.5 0" ></a-box>
+				<a-box   width="2" height="1" depth="0.1" position="0 1.5 0" ></a-box>
+	  </a-entity>
+	</a-entity>
+</a-entity>
 	
 	<a-entity scale="2 2 2" position="-80 0 500" class="thingy">
       <a-entity class="room">
@@ -617,11 +689,6 @@
         <a-cursor>
 			<a-text id="stamia" position="-0.5 1 -1" value="Stamia: " color="white"></a-text>
 			<a-text id="health" position="-0.5 0.5 -1" value="Health: " color="white"></a-text>
-			<div id="stamina-amount">
-		<div id="staminaplus"></div>
-		</div>
-	  
-		</a-cursor>
       </a-camera>
 	  </a-entity>
 	  
