@@ -1,6 +1,7 @@
 let rnd = (l,u) => Math.random()*(u-l) + l;
 let scene, entity, stamia_text,stamina_bar = 100, h=100;
 let wendigo = { template: "#wendigoModel", charge: "wendigo--Charge", scale: 0.8, speed: 0.2 }
+let banana = false;
 window.onload = function(){
 	scene = document.querySelector("a-scene");
 	entity = document.querySelector("a-entity");
@@ -29,7 +30,8 @@ window.onload = function(){
 	blackScreen = document.getElementById("blackScreen");
 	dayLight = document.getElementById("dayLight");
 	floor = document.getElementById("floor");
-    sky = document.getElementById("sky");
+    //sky = document.getElementById("sky");
+	door2 = document.getElementById("door2");
 	
    car1.addEventListener("click", function () {
     console.log("Car 1 clicked");
@@ -56,11 +58,11 @@ window.onload = function(){
       loop: 0,
     });
 
-    console.log("Car animations started");
+    console.log("Car animations started! WOW");
 
     car2.addEventListener("animationcomplete", function () {
       console.log("Car 2 animation complete");
-
+	  carCamera.setAttribute("position",{x:0, y: 18, z: -5});
       car1.setAttribute("animation__drive", {
         property: "position",
         dur: 3000,
@@ -102,13 +104,13 @@ window.onload = function(){
         });
 		
 
-        sky.setAttribute("animation__color", {
-          property: "color",
-          from: "#87CEEB",
-          to: "#000033", 
-          dur: 30000, 
-          easing: "linear",
-        });
+        //sky.setAttribute("animation__color", {
+          //property: "color",
+          //from: "#87CEEB",
+          //to: "#000033", 
+          //dur: 30000, 
+          //easing: "linear",
+        //});
 		
       setTimeout(() => {
         timeText.setAttribute("visible", false);
@@ -240,6 +242,30 @@ window.onload = function(){
 		tree.scale("7");
 		tree = new Tree(-x, 10, 140);
 		tree.scale("7");
+		
+		tree = new Tree(-8, 10, (470 + x));
+		tree.scale("7");
+		
+		tree = new Tree(-26, 10, (470 + x));
+		tree.scale("7");
+		
+		tree = new Tree(-42, 10, (470 + x));
+		tree.scale("7");
+		
+		tree = new Tree(-60, 10, (470 + x));
+		tree.scale("7");
+		
+		tree = new Tree(8, 10, (470 + x));
+		tree.scale("7");
+		
+		tree = new Tree(26, 10, (470 + x));
+		tree.scale("7");
+		
+		tree = new Tree(42, 10, (470 + x));
+		tree.scale("7");
+		
+		tree = new Tree(60, 10, (470 + x));
+		tree.scale("7");
 	}
 	
 	this.go = true;
@@ -265,7 +291,7 @@ window.onload = function(){
 	 camera.y = 0;
 	  camera.dy = 0.5;
 	  if (e.key == " "){
-		camera.y += (camera.dy * 25)
+		camera.y += (camera.dy * 7)
 		camera.object3D.position.y = camera.y;
 	  }
   })
@@ -291,7 +317,6 @@ window.onload = function(){
 		}
 	})
  
-
 	box.addEventListener("mouseenter", function(){
 		box.interact = true;
 		text_interaction.setAttribute("opacity",1);
@@ -301,7 +326,9 @@ window.onload = function(){
 					if (e.key == "e"){
 					box.setAttribute("opacity","0");
 					box.setAttribute("position","0 -5 0");
-					console.log("you have collected the banana");
+					console.log("you have collected the hammer");
+					banana = true;
+					teleportHouse();
 					}
 				}
 			})
@@ -386,7 +413,11 @@ window.onload = function(){
 		}
 	}
 	
-	
+	door2.onclick = function(){
+	 if (banana) {
+		door2.setAttribute("rotation",{x:0, y:90, z:0});
+	}
+}
 	let isFirstPress = true;
 	window.addEventListener("keypress",function(e){
 		if(e.key == "f"){
@@ -415,7 +446,7 @@ window.onload = function(){
 			this.allow = true;
 			this.continue = false;
 			if (e.key == "Shift"){
-				camera.setAttribute("wasd-controls","acceleration:350");
+				camera.setAttribute("wasd-controls","acceleration:90");
 				const runInterval = setInterval(() => {
 					if (this.allow){
 						countdown();
