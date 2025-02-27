@@ -147,7 +147,7 @@ window.onload = function(){
 	
 	//let monster3 = new Tester('monster3', -5, 0, 0);
 	 monster1 = new Monster(20, 0, -4, wendigo);
-	 monster2 = new Monster(14, , 6, -4, wendigo);
+	 monster2 = new Monster(14, 6, -4, wendigo);
   
    //Create MonsterFollower instances to make them follow the camera
   //new MonsterFollower(camera, monster1.obj, 10, 0.35);
